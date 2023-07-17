@@ -1,4 +1,17 @@
-from null_check import null_checker
+# importing null_checker
+def null_checker(question):
+    while True:
+        try:
+
+            inp = input(question)
+
+            if inp.strip() == "":
+                raise ValueError
+            else:
+                return inp
+
+        except:
+            print("Please do not leave this blank\n")
 
 # String Checker for Instructions Component
 

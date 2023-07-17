@@ -1,10 +1,11 @@
 import pandas
+from datetime import date
 
 # BMX Race Result Calculator Base Component
 # Robert Park 27/06/2023
-# Version 1; Setting variables, Building framework
+# Version 1: Integrating Components, Structuring Main Routine
 
-# Functions
+# functions
 
 
 def integer_checker(question, min, max):
@@ -63,11 +64,21 @@ def score_checker(position):
 
 
 def export():
-    race_result_string = pandas.DataFrame.to_string(race_result_frame)
+    # **** get current date for heading and filename ****
+    # get today's date
+    today = date.today()
 
-    # write output to file
-    # create file to hold data (add .txt extension)
-    write_to = "{}.txt".format(f"{nameTeam} Race Results")
+    # get day, month, and year as individual strings
+    day = today.strftime("%d")
+    month = today.strftime("%m")
+    year = today.strftime("%Y")
+
+    # create strings to write
+    race_result_string = pandas.DataFrame.to_string(race_result_frame)
+    filename = f"Race Results ({day}_{month}_{year})"
+    write_to = "{}.txt".format(filename)
+
+    # create a text file and write on
     text_file = open(write_to, "w+")
     text_file.write(race_result_string)
 
@@ -75,18 +86,20 @@ def export():
     text_file.close()
 
 
-# Variables
+# variables
 numRider = 6
-numRace = 4
+numRace = 4  # it will take input for numRace in later versions
 maxPosition = 50
 totalScore = 0
 
+
+# main routine
 while True:
 
     nameTeam = null_checker("Please enter the team name\n")
 
-    # Main Dictionary
-    race_result_dict = {  # it will take input for numRace and use for loop to create keys
+    # main dictionary
+    race_result_dict = {
         nameTeam: [],
         "Race 1": [],
         "Race 2": [],
@@ -95,34 +108,34 @@ while True:
         "Tally": []
     }
 
-    # Main Routine
-    for i in range(1, numRider+1):
+    for i in range(1, numRider+1):  # this can be changed to while loop for flexibility
 
-        # Name Component
+        # get rider name
         nameRider = null_checker("Please enter the rider name\n")
         race_result_dict[nameTeam].append(nameRider)
 
-        # Nested Loop for Placings
+        # get placings for the rider
         for j in range(1, numRace+1):
 
             position = integer_checker(
                 f"Please enter the placing for Race {j}\n", 0, 50)
             race_result_dict[f"Race {j}"].append(position)
 
-            # Cumulative score
+            # add to the tally
             totalScore += score_checker(position)
 
-        # Tally Update
+        # submit tally to dictionary
         race_result_dict["Tally"].append(totalScore)
         totalScore = 0
 
-    # Table Setup
+    # table setup
     race_result_frame = pandas.DataFrame(race_result_dict)
     race_result_frame = race_result_frame.set_index(nameTeam)
     print(race_result_frame)
 
-    # Program Restart / Quit
+    # export to text file
+    export()
+
+    # program restart / quit
     if string_checker("Do you want to restart the program? (y/n)\n", ['yes', 'no']) == "no":
         break
-
-export()

@@ -1,12 +1,4 @@
-race_result_dictionary = {
-
-}
-
-race_result_dictionary["Tally"] = []
-
 # Function for Tally Calculation Component
-
-
 def score_checker(position):
 
     if position == 1:
@@ -19,3 +11,7 @@ def score_checker(position):
         score = 0
 
     return score
+
+
+# Testing
+print("Score:", score_checker(int(input("Position:"))))
