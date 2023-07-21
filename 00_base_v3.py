@@ -2,7 +2,7 @@ import pandas
 from datetime import date
 
 # BMX Race Result Calculator Base Component
-# Robert Park 17/07/2023
+# Robert Park 21/07/2023
 # Version 2: Improvements in Flexibility
 
 # functions

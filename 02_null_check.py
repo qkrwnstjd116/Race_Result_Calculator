@@ -15,4 +15,5 @@ def null_checker(question):
 
 
 # Main Routine for Testing
-print(null_checker("Please enter your name\n"))
+for i in range(1, 5):
+    print("Hi,", null_checker("Please enter your name\n"))

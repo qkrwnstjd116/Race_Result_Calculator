@@ -29,4 +29,5 @@ def string_checker(question, valid_responses):
 
 
 # Main Routine for Testing
-print(string_checker("yes / no\n", ['yes', 'no']))
+for i in range(1, 8):
+    print("You chose", string_checker("yes / no\n", ['yes', 'no']))

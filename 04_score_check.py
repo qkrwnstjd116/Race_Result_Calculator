@@ -14,4 +14,5 @@ def score_checker(position):
 
 
 # Testing
-print("Score:", score_checker(int(input("Position:"))))
+while True:
+    print("Score:", score_checker(int(input("Position:"))))
