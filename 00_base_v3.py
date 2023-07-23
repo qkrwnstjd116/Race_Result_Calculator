@@ -3,7 +3,7 @@ from datetime import date
 
 # BMX Race Result Calculator Base Component
 # Robert Park 21/07/2023
-# Version 2: Improvements in Flexibility
+# Version 3: Fixing Export Error
 
 # functions
 
@@ -96,8 +96,8 @@ def export():
     write_to = "{}.txt".format(filename)
 
     # create a text file and write on
-    text_file = open(write_to, "w+")
-    text_file.write(race_result_string)
+    text_file = open(write_to, "a")
+    text_file.write(race_result_string + '\n\n')
 
     # close file
     text_file.close()
