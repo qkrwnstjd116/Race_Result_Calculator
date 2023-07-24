@@ -1,4 +1,4 @@
-# Integer Checker
+# function that checks if the input is an integer within the given range
 def integer_checker(question, min, max):
     while True:
         try:
@@ -13,7 +13,6 @@ def integer_checker(question, min, max):
             print(f"Please enter an integer between {min} and {max}\n")
 
 
-# Main Routine for Testing
-for i in range(1, 7):
-    print("You chose", integer_checker(
-        "Enter a number between 1 to 10\n", 1, 10))
+# testing code
+for i in range(5):
+    print("You chose", integer_checker("Enter a number between 1 to 10\n", 1, 10))

@@ -1,18 +1,15 @@
-# Function for Tally Calculation Component
+# function that returns the score corresponding to the placing
 def score_checker(position):
-
+    # compare the position to the podium and return the score
     if position == 1:
-        score = 5
+        return 5
     elif position == 2:
-        score = 3
+        return 3
     elif position == 3:
-        score = 1
+        return 1
     else:
-        score = 0
-
-    return score
+        return 0
 
 
-# Testing
-while True:
-    print("Score:", score_checker(int(input("Position:"))))
+# testing code
+print("Score:", score_checker(int(input("Position:"))))

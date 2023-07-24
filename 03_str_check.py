@@ -2,7 +2,6 @@
 def null_checker(question):
     while True:
         try:
-
             inp = input(question)
 
             if inp.strip() == "":
@@ -13,12 +12,10 @@ def null_checker(question):
         except:
             print("Please do not leave this blank\n")
 
-# String Checker for Instructions Component
 
-
+# function that validates and returns the string input
 def string_checker(question, valid_responses):
     while True:
-
         inp = null_checker(question).lower()
 
         for item in valid_responses:
@@ -28,6 +25,6 @@ def string_checker(question, valid_responses):
         print(f"Please choose between {valid_responses}\n")
 
 
-# Main Routine for Testing
-for i in range(1, 8):
-    print("You chose", string_checker("yes / no\n", ['yes', 'no']))
+# testing code
+for i in range(5):
+    print("You chose", string_checker("yes / no\n", ["yes", "no"]))

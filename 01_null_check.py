@@ -1,8 +1,7 @@
-# Null Checker for String Inputs
+# function that takes input that is not blank
 def null_checker(question):
     while True:
         try:
-
             inp = input(question)
 
             if inp.strip() == "":
@@ -14,6 +13,6 @@ def null_checker(question):
             print("Please do not leave this blank\n")
 
 
-# Main Routine for Testing
-for i in range(1, 5):
+# testing code
+for i in range(4):
     print("Hi,", null_checker("Please enter your name\n"))

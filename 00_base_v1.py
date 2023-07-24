@@ -25,7 +25,6 @@ def integer_checker(question, min, max):
 def null_checker(question):
     while True:
         try:
-
             inp = input(question)
 
             if inp.strip() == "":
@@ -39,7 +38,6 @@ def null_checker(question):
 
 def string_checker(question, valid_responses):
     while True:
-
         inp = null_checker(question).lower()
 
         for item in valid_responses:
@@ -50,7 +48,6 @@ def string_checker(question, valid_responses):
 
 
 def score_checker(position):
-
     if position == 1:
         score = 5
     elif position == 2:
@@ -87,55 +84,58 @@ def export():
 
 
 # variables
-numRider = 6
-numRace = 4  # it will take input for numRace in later versions
-maxPosition = 50
-totalScore = 0
+num_rider = 6
+num_race = 4  # it will take input for numRace in later versions
+max_position = 50
+total_score = 0
 
 
 # main routine
 while True:
-
-    nameTeam = null_checker("Please enter the team name\n")
+    name_team = null_checker("Please enter the team name\n")
 
     # main dictionary
     race_result_dict = {
-        nameTeam: [],
+        name_team: [],
         "Race 1": [],
         "Race 2": [],
         "Race 3": [],
         "Race 4": [],
-        "Tally": []
+        "Tally": [],
     }
 
-    for i in range(1, numRider+1):  # this can be changed to while loop for flexibility
-
+    for i in range(
+        1, num_rider + 1
+    ):  # this can be changed to while loop for flexibility
         # get rider name
-        nameRider = null_checker("Please enter the rider name\n")
-        race_result_dict[nameTeam].append(nameRider)
+        name_rider = null_checker("Please enter the rider name\n")
+        race_result_dict[name_team].append(name_rider)
 
         # get placings for the rider
-        for j in range(1, numRace+1):
-
+        for j in range(1, num_race + 1):
             position = integer_checker(
-                f"Please enter the placing for Race {j}\n", 0, 50)
+                f"Please enter the placing for Race {j}\n", 0, max_position
+            )
             race_result_dict[f"Race {j}"].append(position)
 
             # add to the tally
-            totalScore += score_checker(position)
+            total_score += score_checker(position)
 
         # submit tally to dictionary
-        race_result_dict["Tally"].append(totalScore)
-        totalScore = 0
+        race_result_dict["Tally"].append(total_score)
+        total_score = 0
 
     # table setup
     race_result_frame = pandas.DataFrame(race_result_dict)
-    race_result_frame = race_result_frame.set_index(nameTeam)
+    race_result_frame = race_result_frame.set_index(name_team)
     print(race_result_frame)
 
     # export to text file
     export()
 
     # program restart / quit
-    if string_checker("Do you want to restart the program? (y/n)\n", ['yes', 'no']) == "no":
+    if (
+        string_checker("Do you want to restart the program? (y/n)\n", ["yes", "no"])
+        == "no"
+    ):
         break
